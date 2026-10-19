@@ -10,7 +10,11 @@ schema, dropping entries that fail consistency checks, and merging them with the
 other source by barcode.
 
 Food data from [USDA FoodData Central](https://fdc.nal.usda.gov), US Department
-of Agriculture, Agricultural Research Service.
+of Agriculture, Agricultural Research Service: Foundation Foods, SR Legacy and
+Branded Foods, and, since the 2026-10-19 release, the survey foods of
+U.S. Department of Agriculture, Agricultural Research Service. 2024. USDA Food
+and Nutrient Database for Dietary Studies 2021-2023. Food Surveys Research
+Group Home Page, <http://www.ars.usda.gov/nea/bhnrc/fsrg>.
 
 This notice is repeated in every pack's header and in the app (Settings, Food
 database).

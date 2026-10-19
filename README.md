@@ -14,12 +14,15 @@ reuse the data, read the licenses yourself.
 
 | File | What it is |
 |---|---|
-| `generic-<date>.pack.gz` | Common foods with household measures (USDA Foundation Foods and SR Legacy). About 8,000 foods. |
-| `barcode_us-<date>.pack.gz` | Packaged products sold in the United States, found by barcode or by name (USDA Branded Foods and Open Food Facts). About 456,000 products. |
+| `generic-<date>.pack.gz` | Common foods with household measures: USDA Foundation Foods, SR Legacy and, since 2026-10-19, FNDDS (foods as eaten: mixed dishes, restaurant-style foods). About 13,000 foods. |
+| `barcode_us-<date>.pack.gz` | Packaged products sold in the United States, found by barcode or by name (USDA Branded Foods and Open Food Facts). About 521,000 products. |
 | `manifest.json` | Each pack's size and SHA-256, which the app checks before installing. |
+| `report.txt`, `coverage.txt` | What the build read, wrote and dropped per source, and the share of foods stating each nutrient. |
 
-A pack is a gzip-compressed, read-only SQLite file (format version 1, defined by
-`packages/food_catalog` in the app repository). Each food records which source
+A pack is a gzip-compressed, read-only SQLite file (format version 3 since
+2026-10-19, defined by `apps/mobile/src/foodCatalog/FoodPackFormat.ts` in the
+app repository; format 1 packs carried calories, the macros, fiber, sodium and
+alcohol, format 3 adds thirteen more nutrients and sugar alcohols). Each food records which source
 it came from and its id there. Foods the sources disagree about are marked for
 the user to check; no food is described as verified.
 
@@ -31,8 +34,10 @@ the user to check; no food is described as verified.
   and its individual contents under the Database Contents License. See
   [ATTRIBUTION.md](ATTRIBUTION.md).
 - **USDA FoodData Central** (<https://fdc.nal.usda.gov>), published by the US
-  Department of Agriculture. We understand it to be in the public domain
-  (CC0 1.0), and have not yet checked that against USDA's own statement.
+  Department of Agriculture: Foundation Foods, SR Legacy, Branded Foods and
+  the Food and Nutrient Database for Dietary Studies (FNDDS). We understand
+  it to be in the public domain (CC0 1.0), and have not yet checked that
+  against USDA's own statement.
 
 The exact source files and versions behind each release are listed in its
 release notes and in each pack's header.
@@ -53,5 +58,6 @@ covered by this license.
 
 `./mm food fetch` and `./mm food build`, then `./mm food package`, in the
 [app repository](https://github.com/JacobHeater/martian-macros)
-(`packages/food_pipeline`). Each release names the commit it was built from.
+(`apps/mobile/src/foodPipeline`; the build needs the DuckDB command-line
+tool). Each release names the commit it was built from.
 The same sources give byte-identical packs.
